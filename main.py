@@ -63,6 +63,7 @@ with open("scraped.jsonl", "w") as f:
         func_ram=2,
         max_parallelism=1000,
         generator=True,
+        grow=True,
     ):
         for row in chunk_rows:
             f.write(json.dumps(row) + "\n")

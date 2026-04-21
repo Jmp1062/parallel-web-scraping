@@ -74,7 +74,7 @@ def scrape_chunk(urls: list[str]) -> list[dict]:
     return out
 
 
-# 2,000 chunks capped to 1,000 workers running in parallel
+# Burla grows the cluster on demand, capped at 1,000 concurrent workers
 import json
 with open("scraped.jsonl", "w") as f:
     for chunk_rows in remote_parallel_map(
@@ -84,6 +84,7 @@ with open("scraped.jsonl", "w") as f:
         func_ram=2,
         max_parallelism=1000,
         generator=True,
+        grow=True,
     ):
         for row in chunk_rows:
             f.write(json.dumps(row) + "\n")
