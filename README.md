@@ -92,13 +92,13 @@ with open("scraped.jsonl", "w") as f:
 
 ## Why This Is Better
 
-**vs Scrapy / Scrapy Cluster** — Scrapy is great, but Scrapy Cluster is Redis + Kafka + ZooKeeper + custom spiders. Burla is a function and a list.
+**vs Scrapy / Scrapy Cluster** - Scrapy is great, but Scrapy Cluster is Redis + Kafka + ZooKeeper + custom spiders. Burla is a function and a list.
 
-**vs Playwright on Kubernetes** — you maintain a cluster, a Helm chart, a work queue, and a worker image. For plain HTML (no JS), you don't need a browser at all.
+**vs Playwright on Kubernetes** - you maintain a cluster, a Helm chart, a work queue, and a worker image. For plain HTML (no JS), you don't need a browser at all.
 
-**vs Ray / Dask** — both need a cluster up front and neither has a natural "cap concurrent workers at 1,000" primitive for fan-out.
+**vs Ray / Dask** - both need a cluster up front and neither has a natural "cap concurrent workers at 1,000" primitive for fan-out.
 
-**vs AWS Lambda fan-out** — per-account concurrency limits, 15-minute timeouts, and weird networking. Not built for 1M URLs across 1k workers.
+**vs AWS Lambda fan-out** - per-account concurrency limits, 15-minute timeouts, and weird networking. Not built for 1M URLs across 1k workers.
 
 ## How It Works
 
@@ -113,6 +113,6 @@ You chunk the URL list. Burla holds 1,000 workers live at once via `max_parallel
 
 ## When NOT To Use This
 
-- JavaScript-heavy sites requiring a full browser — use Playwright with `func_cpu=2, func_ram=4` per worker, and expect higher cost.
-- Sites with aggressive anti-bot (Cloudflare Turnstile, PerimeterX) — you need residential proxies and a browser fingerprinting solution, not just parallelism.
-- Always-on crawlers that need a scheduling graph and dedupe across runs — use Scrapy with a proper item pipeline.
+- JavaScript-heavy sites requiring a full browser - use Playwright with `func_cpu=2, func_ram=4` per worker, and expect higher cost.
+- Sites with aggressive anti-bot (Cloudflare Turnstile, PerimeterX) - you need residential proxies and a browser fingerprinting solution, not just parallelism.
+- Always-on crawlers that need a scheduling graph and dedupe across runs - use Scrapy with a proper item pipeline.
