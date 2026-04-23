@@ -2,6 +2,12 @@
 
 Scrape 1,000,000 URLs across 1,000 workers at the same time with retry, backoff, and polite per-worker rate limiting.
 
+## Try it in Google Colab
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Burla-Cloud/parallel-web-scraping/blob/main/Burla_ParallelWebScraping_Demo.ipynb)
+
+Follow along in a notebook - scrape 100 Wikipedia pages across 10 cloud workers in about 3 minutes. No prior Burla knowledge needed.
+
 ## The Problem
 
 You need to scrape 1M product pages, news articles, or SERPs. `asyncio` on one box tops out around a few thousand concurrent connections and chokes on CPU (HTML parsing, DNS, TLS). A single machine also gives you one IP and one point of failure.
